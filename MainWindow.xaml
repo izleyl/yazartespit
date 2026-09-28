@@ -1,0 +1,58 @@
+﻿<Window x:Class="yazartaspit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Yazarlık ve Üslup Analiz Sistemi" Height="600" Width="850"
+        WindowStartupLocation="CenterScreen" Background="#F4F6F9">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Başlık -->
+        <TextBlock Text="Metin Yazarlığı Tanıma Sistemi" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+        <!-- Orta Alan: Metin Girişi ve Sonuçlar -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Sol Taraf: Metin Giriş Kutusu -->
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,10,0">
+                <TextBlock Text="Analiz Edilecek Metni Girin (En az 50 karakter):" FontWeight="SemiBold" Foreground="#34495E" Margin="0,0,0,5"/>
+                <TextBox x:Name="TxtMetin" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                         Height="380" Padding="10" FontSize="14" BorderBrush="#CBD5E1" Background="White"/>
+                <Button x:Name="BtnAnaliz" Content="Yazarı Tahmin Et" Click="BtnAnaliz_Click" 
+                        Background="#2563EB" Foreground="White" FontWeight="Bold" FontSize="15" Height="45" Margin="0,15,0,0" Cursor="Hand"/>
+            </StackPanel>
+
+            <!-- Sağ Taraf: Sonuç Paneli -->
+            <Border Grid.Column="2" Background="White" CornerRadius="8" Padding="15" BorderBrush="#E2E8F0" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Analiz Sonuçları" FontSize="16" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,15"/>
+
+                    <!-- Ana Tahmin -->
+                    <TextBlock Text="En Güçlü Tahmin (Yazar ID):" FontSize="12" Foreground="#64748B"/>
+                    <TextBlock x:Name="TxtAnaTahmin" Text="-" FontSize="20" FontWeight="Bold" Foreground="#2563EB" Margin="0,2,0,15"/>
+
+                    <!-- Diğer Adaylar -->
+                    <TextBlock Text="Alternatif Adaylar (Top-3):" FontSize="12" Foreground="#64748B"/>
+                    <ListBox x:Name="LstAlternatifler" Height="80" Margin="0,2,0,15" BorderBrush="#E2E8F0"/>
+
+                    <!-- Üslup Profili -->
+                    <TextBlock Text="Üslup Profili İstatistikleri:" FontSize="12" Foreground="#64748B" Margin="0,0,0,5"/>
+                    <TextBlock x:Name="TxtCumleUzunlugu" Text="• Ortalama Cümle Uzunluğu: -" FontSize="13" Foreground="#334155" Margin="0,2"/>
+                    <TextBlock x:Name="TxtKelimeZenginligi" Text="• Kelime Zenginliği: -" FontSize="13" Foreground="#334155" Margin="0,2"/>
+                    <TextBlock x:Name="TxtNoktalama" Text="• Noktalama Yoğunluğu: -" FontSize="13" Foreground="#334155" Margin="0,2"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Durum Çubuğu -->
+        <TextBlock x:Name="TxtDurum" Grid.Row="2" Text="Sistem Hazır (Python API Bağlantısı Bekleniyor)..." Foreground="#64748B" FontStyle="Italic" Margin="0,10,0,0"/>
+    </Grid>
+</Window>
